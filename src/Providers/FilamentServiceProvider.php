@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace AdminKit\Documents\Providers;
 
-use Filament\PluginServiceProvider;
 use AdminKit\Documents\UI\Filament\Resources\DocumentResource;
+use Filament\PluginServiceProvider;
 
 class FilamentServiceProvider extends PluginServiceProvider
 {

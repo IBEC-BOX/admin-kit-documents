@@ -2,11 +2,11 @@
 
 namespace AdminKit\Documents;
 
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 use AdminKit\Documents\Commands\DocumentsCommand;
 use AdminKit\Documents\Providers\FilamentServiceProvider;
 use AdminKit\Documents\Providers\RouteServiceProvider;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class DocumentsServiceProvider extends PackageServiceProvider
 {

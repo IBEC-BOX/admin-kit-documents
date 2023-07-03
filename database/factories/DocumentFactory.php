@@ -2,8 +2,8 @@
 
 namespace AdminKit\Documents\Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use AdminKit\Documents\Models\Document;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DocumentFactory extends Factory
 {

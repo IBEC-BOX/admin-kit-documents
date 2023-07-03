@@ -2,14 +2,14 @@
 
 namespace AdminKit\Documents\UI\Filament\Resources;
 
+use AdminKit\Documents\Models\Document;
+use AdminKit\Documents\UI\Filament\Resources\DocumentResource\Pages;
 use Filament\Forms;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use AdminKit\Documents\Models\Document;
-use AdminKit\Documents\UI\Filament\Resources\DocumentResource\Pages;
 
 class DocumentResource extends Resource
 {

@@ -3,9 +3,9 @@
 namespace AdminKit\Documents\Models;
 
 use AdminKit\Core\Abstracts\Models\AbstractModel;
+use AdminKit\Documents\Database\Factories\DocumentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Translatable\HasTranslations;
-use AdminKit\Documents\Database\Factories\DocumentFactory;
 
 class Document extends AbstractModel
 {
