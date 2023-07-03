@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\Skeleton\UI\API\Controllers;
+namespace AdminKit\Documents\UI\API\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

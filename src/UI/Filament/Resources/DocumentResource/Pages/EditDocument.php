@@ -1,16 +1,16 @@
 <?php
 
-namespace VendorName\Skeleton\UI\Filament\Resources\SingleNameResource\Pages;
+namespace AdminKit\Documents\UI\Filament\Resources\DocumentResource\Pages;
 
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
-use VendorName\Skeleton\UI\Filament\Resources\SingleNameResource;
+use AdminKit\Documents\UI\Filament\Resources\DocumentResource;
 
-class EditSingleName extends EditRecord
+class EditDocument extends EditRecord
 {
     use EditRecord\Concerns\Translatable;
 
-    protected static string $resource = SingleNameResource::class;
+    protected static string $resource = DocumentResource::class;
 
     protected function getActions(): array
     {

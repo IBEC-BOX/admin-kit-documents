@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace VendorName\Skeleton\Providers;
+namespace AdminKit\Documents\Providers;
 
 use Filament\PluginServiceProvider;
-use VendorName\Skeleton\UI\Filament\Resources\SingleNameResource;
+use AdminKit\Documents\UI\Filament\Resources\DocumentResource;
 
 class FilamentServiceProvider extends PluginServiceProvider
 {
-    public static string $name = 'skeleton_without_prefix';
+    public static string $name = 'documents';
 
     protected array $resources = [
-        SingleNameResource::class,
+        DocumentResource::class,
     ];
 }
