@@ -3,8 +3,13 @@
 namespace AdminKit\Documents;
 
 use AdminKit\Documents\Commands\DocumentsCommand;
+use AdminKit\Documents\Models\Document;
 use AdminKit\Documents\Providers\FilamentServiceProvider;
 use AdminKit\Documents\Providers\RouteServiceProvider;
+use AdminKit\Pages\Models\Page;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -30,5 +35,17 @@ class DocumentsServiceProvider extends PackageServiceProvider
     {
         $this->app->register(FilamentServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
+    }
+
+    public function packageBooted()
+    {
+        FilamentNavigation::addItemType(trans('admin-kit-documents::documents.resource.label'), [
+            Select::make('document_id')
+                ->label(__('admin-kit-documents::documents.resource.label'))
+                ->searchable()
+                ->options(function () {
+                    return Document::pluck('name', 'id');
+                }),
+        ]);
     }
 }
