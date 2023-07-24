@@ -3,7 +3,6 @@
 namespace AdminKit\Documents\UI\Filament\Resources\DocumentResource\Pages;
 
 use AdminKit\Documents\UI\Filament\Resources\DocumentResource;
-use Filament\Pages\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateDocument extends CreateRecord
@@ -15,7 +14,7 @@ class CreateDocument extends CreateRecord
         return DocumentResource::getUrl();
     }
 
-    public function mutateFormDataBeforeCreate($data):array
+    public function mutateFormDataBeforeCreate($data): array
     {
         $data['slug'] = $this->data['slug'];
 

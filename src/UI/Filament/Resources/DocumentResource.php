@@ -6,21 +6,23 @@ use AdminKit\Core\Forms\Components\TranslatableTabs;
 use AdminKit\Documents\Models\Document;
 use AdminKit\Documents\UI\Filament\Resources\DocumentResource\Pages;
 use Filament\Forms;
-use Filament\Resources\Concerns\Translatable;
+use Filament\Forms\Components\Tabs;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Support\Str;
-use Filament\Forms\Components\Tabs;
 
 class DocumentResource extends Resource
 {
     protected static ?string $model = Document::class;
 
     protected static ?string $modelLabel = 'Документ';
+
     protected static ?string $pluralModelLabel = 'Документы';
+
     protected static ?string $navigationGroup = 'Документы';
+
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
     public static function form(Form $form): Form
@@ -28,7 +30,7 @@ class DocumentResource extends Resource
         return $form
             ->schema([
                 TranslatableTabs::make(fn ($locale) => Tabs\Tab::make($locale)->schema([
-                    Forms\Components\TextInput::make('name.' . $locale)
+                    Forms\Components\TextInput::make('name.'.$locale)
                         ->label('Название')
                         ->required()
                         ->afterStateUpdated(
@@ -38,7 +40,7 @@ class DocumentResource extends Resource
                                 }
                             }
                         ),
-                    Forms\Components\FileUpload::make('file.' . $locale)
+                    Forms\Components\FileUpload::make('file.'.$locale)
                         ->label('Файл')
                         ->required(),
                 ]))->columnSpan(2),
