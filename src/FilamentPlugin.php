@@ -2,9 +2,9 @@
 
 namespace AdminKit\Documents;
 
-use Filament\Panel;
-use Filament\Contracts\Plugin;
 use AdminKit\Documents\UI\Filament\Resources\DocumentResource;
+use Filament\Contracts\Plugin;
+use Filament\Panel;
 
 class FilamentPlugin implements Plugin
 {
