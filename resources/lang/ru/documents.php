@@ -2,11 +2,11 @@
 
 return [
     'resource' => [
-        'label' => 'Document',
-        'plural_label' => 'Documents',
+        'label' => 'Документ',
+        'plural_label' => 'Документы',
 
         'id' => 'ID',
-        'title' => 'Title',
+        'title' => 'Заголовок',
 
         'created_at' => 'Создан',
         'updated_at' => 'Обновлен',
