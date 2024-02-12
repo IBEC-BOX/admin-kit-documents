@@ -44,8 +44,21 @@ php artisan vendor:publish --tag="admin-kit-documents-views"
 ## Usage
 
 ```php
-$documents = new AdminKit\Documents();
-echo $documents->echoPhrase('Hello, AdminKit!');
+class AdminPanelProvider extends PanelProvider
+{
+    public function panel(Panel $panel): Panel
+    {
+        return $panel
+            ->default()
+            ->id('admin')
+            ->path('admin')
+            ...
+            ->plugins([
+                ...
+                \AdminKit\Documents\FilamentPlugin::make(),
+            ]);
+    }
+}
 ```
 
 ## Testing

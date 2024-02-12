@@ -3,7 +3,7 @@
 namespace AdminKit\Documents\UI\Filament\Resources\DocumentResource\Pages;
 
 use AdminKit\Documents\UI\Filament\Resources\DocumentResource;
-use Filament\Pages\Actions;
+use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
 class ListDocument extends ListRecords
@@ -12,7 +12,7 @@ class ListDocument extends ListRecords
 
     protected static string $resource = DocumentResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             Actions\LocaleSwitcher::make(),

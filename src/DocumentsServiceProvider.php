@@ -3,7 +3,6 @@
 namespace AdminKit\Documents;
 
 use AdminKit\Documents\Commands\DocumentsCommand;
-use AdminKit\Documents\Providers\FilamentServiceProvider;
 use AdminKit\Documents\Providers\RouteServiceProvider;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -28,7 +27,6 @@ class DocumentsServiceProvider extends PackageServiceProvider
 
     public function registeringPackage()
     {
-        $this->app->register(FilamentServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
     }
 }

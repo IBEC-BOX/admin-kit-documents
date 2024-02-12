@@ -6,9 +6,7 @@ use AdminKit\Documents\Models\Document;
 use AdminKit\Documents\UI\Filament\Resources\DocumentResource\Pages;
 use Filament\Forms;
 use Filament\Resources\Concerns\Translatable;
-use Filament\Resources\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
 
 class DocumentResource extends Resource
@@ -17,9 +15,9 @@ class DocumentResource extends Resource
 
     protected static ?string $model = Document::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-x';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function form(Form $form): Form
+    public static function form(Forms\Form $form): Forms\Form
     {
         return $form
             ->schema([
@@ -30,7 +28,7 @@ class DocumentResource extends Resource
             ->columns(1);
     }
 
-    public static function table(Table $table): Table
+    public static function table(Tables\Table $table): Tables\Table
     {
         return $table
             ->columns([
