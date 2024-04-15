@@ -2,17 +2,15 @@
 
 namespace AdminKit\Documents\UI\Filament\Resources;
 
+use AdminKit\Core\Forms\Components\TranslatableTabs;
 use AdminKit\Documents\Models\Document;
 use AdminKit\Documents\UI\Filament\Resources\DocumentResource\Pages;
 use Filament\Forms;
-use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
 
 class DocumentResource extends Resource
 {
-    use Translatable;
-
     protected static ?string $model = Document::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -21,9 +19,13 @@ class DocumentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->label(__('admin-kit-documents::documents.resource.title'))
-                    ->required(),
+                Forms\Components\SpatieMediaLibraryFileUpload::make('file')
+                    ->label(__('admin-kit-documents::documents.resource.file')),
+                TranslatableTabs::make(fn ($locale) => Forms\Components\Tabs\Tab::make($locale)->schema([
+                    Forms\Components\TextInput::make("title.$locale")
+                        ->label(__('admin-kit-documents::documents.resource.title'))
+                        ->required($locale === app()->getLocale()),
+                ])),
             ])
             ->columns(1);
     }
@@ -77,10 +79,5 @@ class DocumentResource extends Resource
     public static function getPluralLabel(): ?string
     {
         return __('admin-kit-documents::documents.resource.plural_label');
-    }
-
-    public static function getTranslatableLocales(): array
-    {
-        return config('admin-kit.locales');
     }
 }

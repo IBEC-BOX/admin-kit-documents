@@ -6,6 +6,7 @@ return [
         'plural_label' => 'Документы',
 
         'id' => 'ID',
+        'file' => 'Файл',
         'title' => 'Заголовок',
 
         'created_at' => 'Создан',
