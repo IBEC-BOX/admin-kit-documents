@@ -6,6 +6,7 @@ use AdminKit\Core\Forms\Components\TranslatableTabs;
 use AdminKit\Documents\Models\Document;
 use AdminKit\Documents\UI\Filament\Resources\DocumentResource\Pages;
 use Filament\Forms;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Resources\Resource;
 use Filament\Tables;
 
@@ -19,8 +20,21 @@ class DocumentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\SpatieMediaLibraryFileUpload::make('file')
-                    ->label(__('admin-kit-documents::documents.resource.file')),
+                Forms\Components\Tabs::make('')
+                    ->tabs(fn () => [
+                        Tab::make(__('admin-kit-documents::documents.resource.file'))
+                            ->schema([
+                                Forms\Components\SpatieMediaLibraryFileUpload::make('file')
+                                    ->label(''),
+                            ]),
+                        Tab::make(__('admin-kit-documents::documents.resource.link'))
+                            ->schema([
+                                Forms\Components\TextInput::make('link')
+                                    ->label('')
+                                    ->placeholder('https://youtube.com/'),
+                            ]),
+                    ])
+                    ->activeTab(fn (?Document $record) => $record?->link ? 2 : 1),
                 TranslatableTabs::make(fn ($locale) => Forms\Components\Tabs\Tab::make($locale)->schema([
                     Forms\Components\TextInput::make("title.$locale")
                         ->label(__('admin-kit-documents::documents.resource.title'))

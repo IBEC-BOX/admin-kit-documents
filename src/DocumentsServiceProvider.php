@@ -21,7 +21,10 @@ class DocumentsServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasViews()
             ->hasTranslations()
-            ->hasMigration('create_admin_kit_documents_table')
+            ->hasMigrations([
+                'create_admin_kit_documents_table',
+                'add_link_column_to_admin_kit_documents_table',
+            ])
             ->hasCommand(DocumentsCommand::class);
     }
 

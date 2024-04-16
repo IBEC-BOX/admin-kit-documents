@@ -12,9 +12,8 @@ class DocumentData extends Data
 {
     public function __construct(
         public string $title,
-        public string $file,
-        public string $fileMime,
-        public int $fileSize,
+        public ?string $link,
+        public ?array $file,
         public string $createdAt,
     ) {
     }
@@ -25,9 +24,12 @@ class DocumentData extends Data
 
         return new self(
             title: $document->title,
-            file: $media->getUrl(),
-            fileMime: $media->mime_type,
-            fileSize: $media->size,
+            link: $document->link,
+            file: $media ? [
+                'url' => $media->getUrl(),
+                'mime' => $media->mime_type,
+                'size' => $media->size,
+            ] : null,
             createdAt: $document->created_at,
         );
     }

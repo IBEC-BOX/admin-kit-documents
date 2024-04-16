@@ -21,6 +21,7 @@ class Document extends AbstractModel implements HasMedia
 
     protected $fillable = [
         'title',
+        'link',
     ];
 
     protected $translatable = [

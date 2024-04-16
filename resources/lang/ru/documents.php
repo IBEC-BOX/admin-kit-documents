@@ -8,6 +8,7 @@ return [
         'id' => 'ID',
         'file' => 'Файл',
         'title' => 'Заголовок',
+        'link' => 'Ссылка',
 
         'created_at' => 'Создан',
         'updated_at' => 'Обновлен',
