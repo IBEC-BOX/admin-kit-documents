@@ -14,7 +14,7 @@ class DocumentData extends Data
         public string $title,
         public ?string $link,
         public ?array $file,
-        public string $createdAt,
+        public ?string $publishedAt,
     ) {
     }
 
@@ -30,7 +30,7 @@ class DocumentData extends Data
                 'mime' => $media->mime_type,
                 'size' => $media->size,
             ] : null,
-            createdAt: $document->created_at,
+            publishedAt: $document->published_at,
         );
     }
 }

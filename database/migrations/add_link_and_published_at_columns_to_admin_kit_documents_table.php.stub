@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::table('admin_kit_documents', function (Blueprint $table) {
             $table->string('link')->nullable();
+            $table->timestamp('published_at')->nullable();
         });
     }
 
@@ -17,6 +18,7 @@ return new class extends Migration
     {
         Schema::table('admin_kit_documents', function (Blueprint $table) {
             $table->dropColumn('link');
+            $table->dropColumn('published_at');
         });
     }
 };

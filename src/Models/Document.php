@@ -22,6 +22,7 @@ class Document extends AbstractModel implements HasMedia
     protected $fillable = [
         'title',
         'link',
+        'published_at',
     ];
 
     protected $translatable = [
@@ -33,8 +34,8 @@ class Document extends AbstractModel implements HasMedia
         $date = Carbon::createFromDate($year);
 
         return $query
-            ->where('created_at', '>=', $date->copy()->startOfYear())
-            ->where('created_at', '<=', $date->copy()->endOfYear());
+            ->where('published_at', '>=', $date->copy()->startOfYear())
+            ->where('published_at', '<=', $date->copy()->endOfYear());
     }
 
     protected static function newFactory(): DocumentFactory

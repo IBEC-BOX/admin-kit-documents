@@ -40,6 +40,9 @@ class DocumentResource extends Resource
                         ->label(__('admin-kit-documents::documents.resource.title'))
                         ->required($locale === app()->getLocale()),
                 ])),
+                Forms\Components\DateTimePicker::make('published_at')
+                    ->label(__('admin-kit-documents::documents.resource.published_at'))
+                    ->default(now()),
             ])
             ->columns(1);
     }
@@ -53,6 +56,8 @@ class DocumentResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
                     ->label(__('admin-kit-documents::documents.resource.title')),
+                Tables\Columns\TextColumn::make('published_at')
+                    ->label(__('admin-kit-documents::documents.resource.published_at')),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('admin-kit-documents::documents.resource.created_at')),
             ])

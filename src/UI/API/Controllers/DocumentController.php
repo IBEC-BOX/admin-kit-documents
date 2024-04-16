@@ -27,8 +27,9 @@ class DocumentController extends Controller
     public function years(): JsonResponse
     {
         $years = Document::query()
-            ->selectRaw('extract(year FROM created_at) AS year')
+            ->selectRaw('extract(year FROM published_at) AS year')
             ->distinct()
+            ->wherenotnull('published_at')
             ->orderBy('year', 'desc')
             ->pluck('year');
 

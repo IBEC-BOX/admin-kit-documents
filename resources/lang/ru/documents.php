@@ -9,6 +9,7 @@ return [
         'file' => 'Файл',
         'title' => 'Заголовок',
         'link' => 'Ссылка',
+        'published_at' => 'Дата публикации',
 
         'created_at' => 'Создан',
         'updated_at' => 'Обновлен',

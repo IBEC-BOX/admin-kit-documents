@@ -23,7 +23,7 @@ class DocumentsServiceProvider extends PackageServiceProvider
             ->hasTranslations()
             ->hasMigrations([
                 'create_admin_kit_documents_table',
-                'add_link_column_to_admin_kit_documents_table',
+                'add_link_and_published_at_columns_to_admin_kit_documents_table',
             ])
             ->hasCommand(DocumentsCommand::class);
     }
