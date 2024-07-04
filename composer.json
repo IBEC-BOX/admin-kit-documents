@@ -1,6 +1,7 @@
 {
     "name": "ibecsystems/admin-kit-documents",
     "description": "Documents package for AdminKit",
+    "type": "admin-kit-package",
     "keywords": [
         "ibec-box",
         "laravel",
