@@ -18,8 +18,7 @@ class DocumentData extends Data
         public ?string $link,
         public ?array $file,
         public ?string $publishedAt,
-    ) {
-    }
+    ) {}
 
     public static function fromModel(Document $document): DocumentData
     {
