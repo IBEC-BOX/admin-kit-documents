@@ -2,6 +2,4 @@
 
 namespace AdminKit\Documents;
 
-class Documents
-{
-}
+class Documents {}
