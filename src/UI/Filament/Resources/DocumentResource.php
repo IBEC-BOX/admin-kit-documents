@@ -46,7 +46,7 @@ class DocumentResource extends Resource
                             ->relationship(
                                 name: 'category',
                                 titleAttribute: 'title',
-                                modifyQueryUsing: fn(Builder $query) => $query
+                                modifyQueryUsing: fn (Builder $query) => $query
                                     ->selectRaw("id, title->>'$locale' as title, sort")
                                     ->orderBy('sort'),
                             )

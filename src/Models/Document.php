@@ -52,6 +52,6 @@ class Document extends AbstractModel implements HasMedia
 
     protected static function newFactory(): DocumentFactory
     {
-        return new DocumentFactory();
+        return new DocumentFactory;
     }
 }
