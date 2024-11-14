@@ -2,6 +2,7 @@
 
 namespace AdminKit\Documents;
 
+use AdminKit\Documents\UI\Filament\Resources\DocumentCategoryResource;
 use AdminKit\Documents\UI\Filament\Resources\DocumentResource;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
@@ -17,6 +18,7 @@ class FilamentPlugin implements Plugin
     {
         $panel->resources([
             DocumentResource::class,
+            DocumentCategoryResource::class,
         ]);
     }
 

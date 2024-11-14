@@ -18,6 +18,7 @@ class DocumentData extends Data
         public ?string $link,
         public ?array $file,
         public ?string $publishedAt,
+        public ?array $category,
     ) {}
 
     public static function fromModel(Document $document): DocumentData
@@ -33,6 +34,7 @@ class DocumentData extends Data
                 'size' => $media->size,
             ] : null,
             publishedAt: $document->published_at,
+            category: $document->category->only('id', 'title'),
         );
     }
 }

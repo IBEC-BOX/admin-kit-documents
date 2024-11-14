@@ -7,6 +7,7 @@ use AdminKit\Documents\Database\Factories\DocumentFactory;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
@@ -29,6 +30,11 @@ class Document extends AbstractModel implements HasMedia
         'title',
     ];
 
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(DocumentCategory::class);
+    }
+
     public function scopeYear(Builder $query, $year): Builder
     {
         $date = Carbon::createFromDate($year);
@@ -36,6 +42,12 @@ class Document extends AbstractModel implements HasMedia
         return $query
             ->where('published_at', '>=', $date->copy()->startOfYear())
             ->where('published_at', '<=', $date->copy()->endOfYear());
+    }
+
+    public function scopeCategoryId(Builder $query, $categoryId): Builder
+    {
+        return $query
+            ->whereHas('category', fn ($query) => $query->where('id', $categoryId));
     }
 
     protected static function newFactory(): DocumentFactory

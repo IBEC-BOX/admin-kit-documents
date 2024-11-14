@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AdminKit\Documents\UI\API\Controllers;
 
 use AdminKit\Documents\Models\Document;
+use AdminKit\Documents\Models\DocumentCategory;
 use AdminKit\Documents\UI\API\Data\DocumentData;
 use Illuminate\Http\JsonResponse;
 use Spatie\LaravelData\PaginatedDataCollection;
@@ -18,6 +19,7 @@ class DocumentController extends Controller
         $documents = QueryBuilder::for(Document::class)
             ->allowedFilters([
                 AllowedFilter::scope('year'),
+                AllowedFilter::scope('category_id'),
             ])
             ->paginate();
 
@@ -34,5 +36,18 @@ class DocumentController extends Controller
             ->pluck('year');
 
         return response()->json($years);
+    }
+
+    public function categories(): JsonResponse
+    {
+        $locale = app()->getLocale();
+
+        $categories = DocumentCategory::query()
+            ->selectRaw("id, title->'$locale' as title")
+            ->orderBy('sort')
+            ->get()
+            ->toArray();
+
+        return response()->json($categories);
     }
 }

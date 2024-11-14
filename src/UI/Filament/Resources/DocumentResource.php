@@ -9,6 +9,7 @@ use Filament\Forms;
 use Filament\Forms\Components\Tabs\Tab;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Illuminate\Database\Eloquent\Builder;
 
 class DocumentResource extends Resource
 {
@@ -16,11 +17,54 @@ class DocumentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Документы';
+    }
+
     public static function form(Forms\Form $form): Forms\Form
     {
+        $locale = app()->getLocale();
+
         return $form
+            ->columns(3)
             ->schema([
+                Forms\Components\Grid::make()
+                    ->columns()
+                    ->columnSpan(2)
+                    ->schema([
+                        TranslatableTabs::make(fn ($locale) => Forms\Components\Tabs\Tab::make($locale)->schema([
+                            Forms\Components\TextInput::make("title.$locale")
+                                ->label(__('admin-kit-documents::documents.resource.title'))
+                                ->required($locale === app()->getLocale()),
+                        ]))
+                            ->columnSpan(2),
+                        Forms\Components\Select::make('category')
+                            ->label('Категория')
+                            ->preload()
+                            ->columnSpan(1)
+                            ->relationship(
+                                name: 'category',
+                                titleAttribute: 'title',
+                                modifyQueryUsing: fn(Builder $query) => $query
+                                    ->selectRaw("id, title->>'$locale' as title, sort")
+                                    ->orderBy('sort'),
+                            )
+                            ->createOptionForm([
+                                TranslatableTabs::make(fn ($locale) => [
+                                    Forms\Components\TextInput::make("title.$locale")
+                                        ->label('Название')
+                                        ->required(),
+                                ]),
+                            ]),
+                        Forms\Components\DateTimePicker::make('published_at')
+                            ->label(__('admin-kit-documents::documents.resource.published_at'))
+                            ->columnSpan(1)
+                            ->default(now()),
+                    ]),
+
                 Forms\Components\Tabs::make('')
+                    ->columns(1)
                     ->tabs(fn () => [
                         Tab::make(__('admin-kit-documents::documents.resource.file'))
                             ->schema([
@@ -35,16 +79,7 @@ class DocumentResource extends Resource
                             ]),
                     ])
                     ->activeTab(fn (?Document $record) => $record?->link ? 2 : 1),
-                TranslatableTabs::make(fn ($locale) => Forms\Components\Tabs\Tab::make($locale)->schema([
-                    Forms\Components\TextInput::make("title.$locale")
-                        ->label(__('admin-kit-documents::documents.resource.title'))
-                        ->required($locale === app()->getLocale()),
-                ])),
-                Forms\Components\DateTimePicker::make('published_at')
-                    ->label(__('admin-kit-documents::documents.resource.published_at'))
-                    ->default(now()),
-            ])
-            ->columns(1);
+            ]);
     }
 
     public static function table(Tables\Table $table): Tables\Table
