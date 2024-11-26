@@ -7,7 +7,6 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use PhpParser\Comment\Doc;
 
 class SyncReportsFromErgkz extends Command
 {
@@ -25,6 +24,7 @@ class SyncReportsFromErgkz extends Command
         if ($data->isEmpty()) {
             $this->info('Синхронизация завершена');
             $this->newLine();
+
             return 0;
         }
 
@@ -37,7 +37,7 @@ class SyncReportsFromErgkz extends Command
 
                 // пропускаем, если файл по ссылке отсутствует
                 $url = $this->customUrlEncode($item['path']);
-                if (!$this->urlExists($url)) {
+                if (! $this->urlExists($url)) {
                     return;
                 }
 
@@ -45,7 +45,7 @@ class SyncReportsFromErgkz extends Command
                 $document = Document::query()->create([
                     'title' => [$item['locale'] => $item['name']],
                     'link' => $item['extension'] === 'link' ? $item['path'] : null,
-                    'published_at' => !empty($item['pub_date']) ? $item['pub_date'] : null,
+                    'published_at' => ! empty($item['pub_date']) ? $item['pub_date'] : null,
                     'category_id' => 1,
                     'ergkz_id' => $item['id'],
                 ]);
@@ -74,7 +74,7 @@ class SyncReportsFromErgkz extends Command
 
         if ($response->failed()) {
             $this->error('Не удалось синхронизировать документы из erg.kz');
-            throw new \Exception('Не удалось синхронизировать документы из erg.kz. Ошибка запроса: ' . $response->body());
+            throw new \Exception('Не удалось синхронизировать документы из erg.kz. Ошибка запроса: '.$response->body());
         }
 
         return $response->collect('data');
@@ -99,6 +99,7 @@ class SyncReportsFromErgkz extends Command
         $headers = @get_headers($url);
         if ($headers) {
             $statusCode = substr($headers[0], 9, 3); // Extract status code
+
             return $statusCode == '200';
         }
 
