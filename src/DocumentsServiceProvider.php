@@ -3,6 +3,7 @@
 namespace AdminKit\Documents;
 
 use AdminKit\Documents\Commands\DocumentsCommand;
+use AdminKit\Documents\Commands\SyncReportsFromErgkz;
 use AdminKit\Documents\Providers\RouteServiceProvider;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -26,7 +27,10 @@ class DocumentsServiceProvider extends PackageServiceProvider
                 'add_link_and_published_at_columns_to_admin_kit_documents_table',
                 'add_ergkz_id_column_in_admin_kit_documents_table',
             ])
-            ->hasCommand(DocumentsCommand::class);
+            ->hasCommands([
+                DocumentsCommand::class,
+                SyncReportsFromErgkz::class,
+            ]);
     }
 
     public function registeringPackage()
