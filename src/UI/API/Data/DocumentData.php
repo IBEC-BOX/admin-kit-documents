@@ -34,7 +34,7 @@ class DocumentData extends Data
                 'size' => $media->size,
             ] : null,
             publishedAt: $document->published_at,
-            category: $document->category->only('id', 'title'),
+            category: $document->category?->only('id', 'title'),
         );
     }
 }

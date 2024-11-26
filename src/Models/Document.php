@@ -24,6 +24,8 @@ class Document extends AbstractModel implements HasMedia
         'title',
         'link',
         'published_at',
+        'ergkz_id',
+        'category_id',
     ];
 
     protected $translatable = [
