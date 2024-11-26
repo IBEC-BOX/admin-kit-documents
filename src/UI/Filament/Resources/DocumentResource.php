@@ -35,8 +35,7 @@ class DocumentResource extends Resource
                     ->schema([
                         TranslatableTabs::make(fn ($locale) => Forms\Components\Tabs\Tab::make($locale)->schema([
                             Forms\Components\TextInput::make("title.$locale")
-                                ->label(__('admin-kit-documents::documents.resource.title'))
-                                ->required($locale === app()->getLocale()),
+                                ->label(__('admin-kit-documents::documents.resource.title')),
                         ]))
                             ->columnSpan(2),
                         Forms\Components\Select::make('category')
@@ -90,7 +89,8 @@ class DocumentResource extends Resource
                     ->label(__('admin-kit-documents::documents.resource.id'))
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
-                    ->label(__('admin-kit-documents::documents.resource.title')),
+                    ->label(__('admin-kit-documents::documents.resource.title'))
+                    ->limit(50),
                 Tables\Columns\TextColumn::make('published_at')
                     ->label(__('admin-kit-documents::documents.resource.published_at')),
                 Tables\Columns\TextColumn::make('created_at')
