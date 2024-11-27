@@ -64,7 +64,7 @@ class SyncReportsFromErgkz extends Command
 
     private function getData(int $page = 1, int $perPage = 10): Collection
     {
-        $response = Http::get(config('services.reports_from_ergkz.url'), [
+        $response = Http::get(config('services.reports_from_ergkz.url.' . app()->environment()), [
             'start_above_id' => Document::query()->max('ergkz_id') ?? 1,
             'enterprise_id' => config('services.reports_from_ergkz.enterprise_id'),
             'category_id' => config('services.reports_from_ergkz.category_id'),
