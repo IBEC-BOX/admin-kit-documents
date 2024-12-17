@@ -9,7 +9,6 @@ use Filament\Forms;
 use Filament\Forms\Components\Tabs\Tab;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
 
 class DocumentResource extends Resource
 {
