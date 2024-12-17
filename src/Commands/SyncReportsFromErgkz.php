@@ -18,7 +18,7 @@ class SyncReportsFromErgkz extends Command
     {
         $this->info('Синхронизация документов из erg.kz');
 
-        $data = $this->getData(perPage: 2);
+        $data = $this->getData(perPage: 100);
 
         // заканчиваем, если получили пустой массив
         if ($data->isEmpty()) {
