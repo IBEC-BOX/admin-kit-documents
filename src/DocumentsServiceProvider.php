@@ -24,6 +24,7 @@ class DocumentsServiceProvider extends PackageServiceProvider
             ->hasMigrations([
                 'create_admin_kit_documents_table',
                 'add_link_and_published_at_columns_to_admin_kit_documents_table',
+                'add_ergkz_id_column_in_admin_kit_documents_table',
             ])
             ->hasCommand(DocumentsCommand::class);
     }
