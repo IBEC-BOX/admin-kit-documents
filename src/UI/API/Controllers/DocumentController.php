@@ -16,11 +16,15 @@ class DocumentController extends Controller
 {
     public function index(): PaginatedDataCollection
     {
+        $locale = app()->getLocale();
+
         $documents = QueryBuilder::for(Document::class)
             ->allowedFilters([
                 AllowedFilter::scope('year'),
                 AllowedFilter::scope('category_id'),
             ])
+            ->whereNotNull("title->$locale")
+            ->whereNot("title->$locale", '')
             ->paginate();
 
         return DocumentData::collection($documents);
