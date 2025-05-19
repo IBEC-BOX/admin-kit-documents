@@ -30,6 +30,13 @@ class Document extends AbstractModel implements HasMedia
         'title',
     ];
 
+    public function getCustomTitleAttribute(): string
+    {
+        $title = $this->getTranslations('title');
+
+        return $title['ru'] ?? $title['kk'] ?? $title['en'] ?? '-';
+    }
+
     public function scopeYear(Builder $query, $year): Builder
     {
         $date = Carbon::createFromDate($year);

@@ -69,7 +69,7 @@ class DocumentResource extends Resource
                 Tables\Columns\TextColumn::make('id')
                     ->label(__('admin-kit-documents::documents.resource.id'))
                     ->sortable(),
-                Tables\Columns\TextColumn::make('title')
+                Tables\Columns\TextColumn::make('custom_title')
                     ->label(__('admin-kit-documents::documents.resource.title'))
                     ->limit(50),
                 Tables\Columns\TextColumn::make('published_at')
